@@ -8,11 +8,10 @@ import { Separator } from "@/components/ui/separator"
 import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import Spline from '@splinetool/react-spline';
 
 export default function Page() {
   return (
-    <div className="flex flex-col flex-1 w-full">
+    <>
       <header className="bg-background sticky top-0 flex h-14 shrink-0 items-center gap-2">
         <div className="flex flex-1 items-center gap-2 px-3">
           <SidebarTrigger />
@@ -24,7 +23,7 @@ export default function Page() {
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbPage className="line-clamp-1">
-                  Car Visualization
+                  Project Management & Task Tracking
                 </BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
@@ -32,15 +31,13 @@ export default function Page() {
         </div>
       </header>
       <div className="flex-1 flex flex-col min-h-0 overflow-hidden p-4">
-        <div className="flex-1 bg-[#2ACB40] rounded-xl overflow-hidden">
-          <div className="relative w-full h-full">
-            <Spline
-              scene="https://prod.spline.design/o2Wqsd0wdmoIlUsF/scene.splinecode"
-              className="w-full h-full"
-            />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center w-full">
+            <h1 className="text-2xl font-semibold mb-4">About Page</h1>
+            <p className="text-gray-600">This is the about page content.</p>
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

@@ -7,23 +7,21 @@ import {
   Calendar,
   Command,
   Home,
-  Inbox,
+  Mail,
   MessageCircleQuestion,
-  Search,
   Settings2,
   Sparkles,
   Trash2,
+  User,
 } from "lucide-react"
 
 import { NavFavorites } from "@/components/nav-favorites"
 import { NavMain } from "@/components/nav-main"
-import { NavSecondary } from "@/components/nav-secondary"
 import { NavWorkspaces } from "@/components/nav-workspaces"
 import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
-  SidebarRail,
 } from "@/components/ui/sidebar"
 
 // This is sample data.
@@ -47,25 +45,26 @@ const data = {
   ],
   navMain: [
     {
-      title: "Search",
-      url: "#",
-      icon: Search,
+        title: "Home",
+        url: "/",
+        icon: Home,
+        // isActive: true,
+      },
+      {
+      title: "About",
+      url: "/about",
+      icon: User,
     },
     {
-      title: "Ask AI",
+      title: "Resume",
       url: "#",
       icon: Sparkles,
     },
+  
     {
-      title: "Home",
+      title: "Contact",
       url: "#",
-      icon: Home,
-      isActive: true,
-    },
-    {
-      title: "Inbox",
-      url: "#",
-      icon: Inbox,
+      icon: Mail,
       badge: "10",
     },
   ],
@@ -126,7 +125,7 @@ const data = {
       pages: [
         {
           name: "Club Tournament Platform",
-          url: "/golf",
+          url: "#",
           emoji: "📔",
         },
         {
@@ -164,16 +163,16 @@ export function SidebarLeft({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar className="border-r-0" {...props}>
+    <Sidebar className="border-r-0 h-full" {...props}>
       <SidebarHeader>
         <NavMain items={data.navMain} />
       </SidebarHeader>
       <SidebarContent>
         <NavFavorites favorites={data.favorites} />
         <NavWorkspaces workspaces={data.workspaces} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
       </SidebarContent>
-      <SidebarRail />
+      {/* <SidebarRail /> */}
     </Sidebar>
   )
 }

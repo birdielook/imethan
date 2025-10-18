@@ -9,12 +9,13 @@ Create a `.env.local` file in your project root with the following:
 # OpenAI API Configuration
 # Get your API key from: https://platform.openai.com/api-keys
 OPENAI_API_SECRET_KEY=your_openai_api_key_here
+OPENAI_CHATKIT_WORKFLOW_ID=wf_68f329be7e9c8190a244496286ed4dec08f977453ba3f2c9
 ```
 
 ### 2. ChatKit Features
 - **Location**: ChatKit is implemented in the right sidebar (`sidebar-right.tsx`)
 - **API Endpoint**: `/api/chatkit/session` handles session creation
-- **Workflow ID**: `wf_68df4b13b3588190a09d19288d4610ec0df388c3983f58d1` (as provided)
+- **Workflow ID**: Now configured via environment variable `OPENAI_CHATKIT_WORKFLOW_ID`
 
 ### 3. How It Works
 1. The ChatKit script is loaded in the layout
@@ -27,7 +28,7 @@ OPENAI_API_SECRET_KEY=your_openai_api_key_here
 - Start your development server: `npm run dev`
 - Navigate to any page that has the sidebar (/, /about, /car, /hello)
 - The ChatKit should appear in the right sidebar
-- Make sure to set your `OPENAI_API_SECRET_KEY` environment variable
+- Make sure to set your `OPENAI_API_SECRET_KEY` and `OPENAI_CHATKIT_WORKFLOW_ID` environment variables
 
 ### 5. Troubleshooting
 - Ensure your OpenAI API key has the necessary permissions for ChatKit

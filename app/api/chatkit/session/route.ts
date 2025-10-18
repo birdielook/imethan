@@ -11,6 +11,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const workflowId = process.env.OPENAI_CHATKIT_WORKFLOW_ID;
+    
+    if (!workflowId) {
+      return NextResponse.json(
+        { error: 'Workflow ID not configured' },
+        { status: 500 }
+      );
+    }
+
     const response = await fetch("https://api.openai.com/v1/chatkit/sessions", {
       method: "POST",
       headers: {
@@ -19,7 +28,7 @@ export async function POST(request: NextRequest) {
         Authorization: "Bearer " + process.env.OPENAI_API_SECRET_KEY,
       },
       body: JSON.stringify({
-        workflow: { id: "wf_68f329be7e9c8190a244496286ed4dec08f977453ba3f2c9" },
+        workflow: { id: workflowId },
         user: deviceId,
       }),
     });

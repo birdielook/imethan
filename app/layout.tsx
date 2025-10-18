@@ -4,6 +4,7 @@ import "./globals.css";
 import { SidebarLeft } from "@/components/sidebar-left";
 import { SidebarRight } from "@/components/sidebar-right";
 import { SidebarProvider } from "@/components/ui/sidebar";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,13 +37,22 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SidebarProvider>
-              <SidebarLeft />
-              {children}
-            <div className="min-w-[380px] flex-shrink-0">
-              <SidebarRight />
-            </div>
-        </SidebarProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          suppressHydrationWarning
+          themes={["light", "dark", "navy"]}
+        >
+          <SidebarProvider>
+                <SidebarLeft />
+                {children}
+              <div className="min-w-[380px] flex-shrink-0">
+                <SidebarRight />
+              </div>
+          </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

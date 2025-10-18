@@ -14,10 +14,12 @@ import {
   Trash2,
   User,
 } from "lucide-react"
+import { useTheme } from "next-themes"
 
 import { NavFavorites } from "@/components/nav-favorites"
 import { NavMain } from "@/components/nav-main"
 import { NavWorkspaces } from "@/components/nav-workspaces"
+import { ThemeToggle } from "@/components/theme-toggle"
 import {
   Sidebar,
   SidebarContent,
@@ -45,12 +47,12 @@ const data = {
   ],
   navMain: [
     {
-        title: "Home",
-        url: "/",
-        icon: Home,
-        // isActive: true,
-      },
-      {
+      title: "Home",
+      url: "/",
+      icon: Home,
+      // isActive: true,
+    },
+    {
       title: "About",
       url: "/about",
       icon: User,
@@ -60,7 +62,7 @@ const data = {
       url: "#",
       icon: Sparkles,
     },
-  
+
     {
       title: "Contact",
       url: "#",
@@ -112,15 +114,15 @@ const data = {
       emoji: "",
     },
     {
-        name: "FinTech",
-        url: "#",
-        emoji: "",
-      },
-      {
-        name: "In-Car E-commerce",
-        url: "/car",
-        emoji: "",
-      }
+      name: "FinTech",
+      url: "#",
+      emoji: "",
+    },
+    {
+      name: "In-Car E-commerce",
+      url: "/car",
+      emoji: "",
+    }
 
   ],
   workspaces: [
@@ -167,10 +169,42 @@ const data = {
 export function SidebarLeft({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
+  const { theme, resolvedTheme } = useTheme()
+  const [mounted, setMounted] = React.useState(false)
+  
+  // Prevent hydration mismatch by only rendering theme-dependent content after mount
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+  
   return (
     <Sidebar className="border-r-0 h-full" {...props}>
       <SidebarHeader>
-        <NavMain items={data.navMain} />
+        <div className="flex flex-col gap-4">
+          {/* Logo */}
+          <div className="flex items-center px-4">
+            {mounted ? (
+              <img 
+                src={resolvedTheme === "dark" ? "/logo-ethan-dark.svg" : "/logo-ethan.svg"} 
+                alt="Ethan Logo" 
+                className="h-8 w-auto"
+              />
+            ) : (
+              <img 
+                src="/logo-ethan.svg" 
+                alt="Ethan Logo" 
+                className="h-8 w-auto"
+              />
+            )}
+          </div>
+          
+          <ThemeToggle />
+
+          {/* Navigation */}
+          <div className="flex items-center justify-between">
+            <NavMain items={data.navMain} />
+          </div>
+        </div>
       </SidebarHeader>
       <SidebarContent>
         <NavFavorites favorites={data.favorites} />

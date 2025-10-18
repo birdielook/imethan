@@ -4,6 +4,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb"
+import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import {
   SidebarTrigger,
@@ -31,9 +32,9 @@ export default function Home() {
         </div>
       </header>
       <div className="flex-1 flex flex-col min-h-0 overflow-hidden p-4">
-        <div className="flex-1 bg-[#2ACB40] rounded-xl overflow-hidden">
+        <div className="flex-1 overflow-hidden">
           <div className="relative w-full h-full">
-        
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Click me</Button>
           </div>
         </div>
       </div>

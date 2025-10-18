@@ -2,8 +2,10 @@
 
 import * as React from "react"
 import { ChatKit, useChatKit } from '@openai/chatkit-react';
-
+import { useTheme } from "next-themes"
 export function SidebarRight() {
+  const { theme } = useTheme()
+  
   const { control } = useChatKit({
     api: {
       async getClientSecret(existing) {
@@ -32,9 +34,19 @@ export function SidebarRight() {
       },
     },
     theme: {
-      colorScheme: 'light',
-      radius: 'pill',
+      colorScheme: theme === "dark" ? "dark" : "light",
+      radius: 'round',
       density: 'spacious',
+      color: {
+        accent: {
+          primary: '#4830fd',
+          level: 1
+        },
+        surface: {
+          background: theme === "dark" ? "#000000" : "#ffffff",
+          foreground: theme === "dark" ? "#444444" : "#e6e6e6"
+        }
+      },
       typography: {
         baseSize: 16,
         fontFamily: '"OpenAI Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif',

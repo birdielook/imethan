@@ -1,62 +1,54 @@
-import { AppSidebar } from "@/components/app-sidebar"
-// Car page content
-import Spline from '@splinetool/react-spline';
+import { SidebarLeft } from "@/components/sidebar-left"
+import { SidebarRight } from "@/components/sidebar-right"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb"
+import { Separator } from "@/components/ui/separator"
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import Spline from '@splinetool/react-spline';
 
 export default function Page() {
   return (
     <SidebarProvider>
-
+      <SidebarLeft />
       <SidebarInset>
-        <div className="h-16 bg-[#2ACB40] h-full">
-        <header className="absolute top-0 left-0 right-0 z-10 flex h-16 shrink-0 items-center gap-2 px-16">
-
-          <span className="font-bold mr-4rem">Ethan Nguyen</span>
-          {/* <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="#">
-                  Building Your Application
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator className="hidden md:block" />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb> */}
-          <SidebarTrigger className="-mr-1 ml-auto rotate-180" />
-        </header>
-
-        <div className="flex flex-1 flex-col bg-[#2ACB40] h-full">
-
-          <div className="relative aspect-video w-full overflow-hidden h-[600px]">
-            <Spline
-              scene="https://prod.spline.design/o2Wqsd0wdmoIlUsF/scene.splinecode"
-              className="w-full h-full"
+        <header className="bg-background sticky top-0 flex h-14 shrink-0 items-center gap-2">
+          <div className="flex flex-1 items-center gap-2 px-3">
+            <SidebarTrigger />
+            <Separator
+              orientation="vertical"
+              className="mr-2 data-[orientation=vertical]:h-4"
             />
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbPage className="line-clamp-1">
+                    Car Visualization
+                  </BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
           </div>
-
-
-
-
-
-
-
-
-
+        </header>
+        <div className="flex flex-1 flex-col gap-4 p-4">
+          <div className="bg-[#2ACB40] h-full rounded-xl overflow-hidden">
+            <div className="relative aspect-video w-full overflow-hidden h-[600px]">
+              <Spline
+                scene="https://prod.spline.design/o2Wqsd0wdmoIlUsF/scene.splinecode"
+                className="w-full h-full"
+              />
+            </div>
+          </div>
         </div>
-        </div>
-
-
-
       </SidebarInset>
-      <AppSidebar side="right" />
-
+      <SidebarRight />
     </SidebarProvider>
   )
 }

@@ -97,22 +97,27 @@ const data = {
   ],
   favorites: [
     {
-      name: "Visual Studio Copilot AI",
+      name: "Insurance Agents Platform",
       url: "#",
       emoji: "",
     },
     {
-      name: "Cyberights Enterprise VPN",
+      name: "Visual Studio GitHub Copilot",
       url: "#",
       emoji: "",
     },
     {
-        name: "FinTech Mobile App",
+      name: "Enterprise VPN",
+      url: "#",
+      emoji: "",
+    },
+    {
+        name: "FinTech",
         url: "#",
         emoji: "",
       },
       {
-        name: "First In-Vehicle E-commerce Platform",
+        name: "In-Car E-commerce",
         url: "/car",
         emoji: "",
       }
@@ -120,7 +125,7 @@ const data = {
   ],
   workspaces: [
     {
-      name: "Golf Ecosystem Application",
+      name: "Golf Apps Ecosystem",
       emoji: "🏠",
       pages: [
         {
@@ -141,7 +146,7 @@ const data = {
       ],
     },
     {
-      name: "Open AI Agent Builder",
+      name: "Open AI",
       emoji: "🧳",
       pages: [
         {

@@ -23,7 +23,7 @@ export default function Home() {
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbPage className="line-clamp-1">
-                  Car Visualization
+                  Home
                 </BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>

@@ -124,19 +124,20 @@ function ChatKitApp({ isMobile, onClose }: { isMobile: boolean; isOpen: boolean;
     }
     
     // Listen for ChatKit errors
-    const handleError = (event: CustomEvent) => {
-      console.error('ChatKit error:', event.detail)
+    const handleError = (event: Event) => {
+      const customEvent = event as CustomEvent
+      console.error('ChatKit error:', customEvent.detail)
       setSessionStatus('error')
-      setErrorMessage((event.detail as { message?: string })?.message || 'Unknown ChatKit error')
+      setErrorMessage((customEvent.detail as { message?: string })?.message || 'Unknown ChatKit error')
     }
     
-    window.addEventListener('chatkit-error', handleError)
+    window.addEventListener('chatkit-error', handleError as EventListener)
     checkSession()
     const interval = setInterval(checkSession, 5000)
     
     return () => {
       clearInterval(interval)
-      window.removeEventListener('chatkit-error', handleError)
+      window.removeEventListener('chatkit-error', handleError as EventListener)
     }
   }, [])
 

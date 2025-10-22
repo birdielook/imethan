@@ -14,12 +14,13 @@ export async function POST(request: NextRequest) {
     const workflowId = process.env.CHATKIT_WORKFLOW_ID;
     const apiKey = process.env.OPENAI_API_KEY;
     
-    // Debug logging for localhost development
+    // Debug logging for development and production
     console.log('Environment check:', {
       hasWorkflowId: !!workflowId,
       hasApiKey: !!apiKey,
       workflowIdLength: workflowId?.length || 0,
-      apiKeyPrefix: apiKey?.substring(0, 7) || 'none'
+      apiKeyPrefix: apiKey?.substring(0, 7) || 'none',
+      environment: process.env.NODE_ENV
     });
     
     if (!workflowId) {

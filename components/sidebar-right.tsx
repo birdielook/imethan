@@ -106,7 +106,7 @@ const CHATKIT_CONFIG = {
 let chatkitMounted = false
 let chatkitRoot: Root | null = null
 
-function ChatKitApp({ isMobile, isOpen, onClose }: { isMobile: boolean; isOpen: boolean; onClose: () => void }) {
+function ChatKitApp({ isMobile, onClose }: { isMobile: boolean; isOpen: boolean; onClose: () => void }) {
   const { control } = useChatKit(CHATKIT_CONFIG)
   const [sessionStatus, setSessionStatus] = React.useState<'connecting' | 'connected' | 'error'>('connecting')
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null)
@@ -124,10 +124,10 @@ function ChatKitApp({ isMobile, isOpen, onClose }: { isMobile: boolean; isOpen: 
     }
     
     // Listen for ChatKit errors
-    const handleError = (event: any) => {
+    const handleError = (event: CustomEvent) => {
       console.error('ChatKit error:', event.detail)
       setSessionStatus('error')
-      setErrorMessage(event.detail?.message || 'Unknown ChatKit error')
+      setErrorMessage((event.detail as { message?: string })?.message || 'Unknown ChatKit error')
     }
     
     window.addEventListener('chatkit-error', handleError)

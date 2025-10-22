@@ -8,7 +8,6 @@ import { Separator } from "@/components/ui/separator"
 import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import Spline from '@splinetool/react-spline';
 
 export default function Page() {
   return (

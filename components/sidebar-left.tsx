@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import {
   AudioWaveform,
   Blocks,
@@ -18,8 +19,6 @@ import {
 import { useTheme } from "next-themes"
 
 import { NavFavorites } from "@/components/nav-favorites"
-import { NavMain } from "@/components/nav-main"
-import { NavWorkspaces } from "@/components/nav-workspaces"
 import { ThemeToggle } from "@/components/theme-toggle"
 import {
   Sidebar,
@@ -192,15 +191,19 @@ export function SidebarLeft({
           <div className="flex items-center px-4">
             <Link href="/" className="hover:opacity-80 transition-opacity">
               {mounted ? (
-                <img 
+                <Image 
                   src={resolvedTheme === "dark" ? "/logo-ethan-dark.svg" : "/logo-ethan.svg"} 
                   alt="Ethan Logo" 
+                  width={32}
+                  height={32}
                   className="h-8 w-auto"
                 />
               ) : (
-                <img 
+                <Image 
                   src="/logo-ethan.svg" 
                   alt="Ethan Logo" 
+                  width={32}
+                  height={32}
                   className="h-8 w-auto"
                 />
               )}

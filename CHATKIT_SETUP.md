@@ -8,8 +8,9 @@ Create a `.env.local` file in your project root with the following:
 ```bash
 # OpenAI API Configuration
 # Get your API key from: https://platform.openai.com/api-keys
-OPENAI_API_SECRET_KEY=your_openai_api_key_here
-OPENAI_CHATKIT_WORKFLOW_ID=wf_68f329be7e9c8190a244496286ed4dec08f977453ba3f2c9
+OPENAI_API_KEY=your_openai_api_key_here
+CHATKIT_WORKFLOW_ID=wf_68f329be7e9c8190a244496286ed4dec08f977453ba3f2c9
+OPENAI_ORG_ID=your_org_id_here
 ```
 
 ### 2. ChatKit Features

@@ -4,9 +4,9 @@ import {
   ArrowUpRight,
   Link,
   MoreHorizontal,
-  StarOff,
-  Trash2,
+  MessageCircle,
 } from "lucide-react"
+import NextLink from "next/link"
 
 import {
   DropdownMenu,
@@ -36,6 +36,15 @@ export function NavFavorites({
 }) {
   const { isMobile } = useSidebar()
 
+  const handleCopyLink = (url: string) => {
+    const fullUrl = `${window.location.origin}${url}`
+    navigator.clipboard.writeText(fullUrl)
+  }
+
+  const handleOpenInNewTab = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       <SidebarGroupLabel>Projects</SidebarGroupLabel>
@@ -43,10 +52,10 @@ export function NavFavorites({
         {favorites.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
-              <a href={item.url} title={item.name}>
+              <NextLink href={item.url} title={item.name}>
                 <span>{item.emoji}</span>
                 <span>{item.name}</span>
-              </a>
+              </NextLink>
             </SidebarMenuButton>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -60,24 +69,20 @@ export function NavFavorites({
                 side={isMobile ? "bottom" : "right"}
                 align={isMobile ? "end" : "start"}
               >
-                <DropdownMenuItem>
-                  <StarOff className="text-muted-foreground" />
-                  <span>Remove from Favorites</span>
-                </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <MessageCircle className="text-muted-foreground" />
+                    <span>Chat</span>
+                  </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleCopyLink(item.url)}>
                   <Link className="text-muted-foreground" />
                   <span>Copy Link</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleOpenInNewTab(item.url)}>
                   <ArrowUpRight className="text-muted-foreground" />
                   <span>Open in New Tab</span>
                 </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Trash2 className="text-muted-foreground" />
-                  <span>Delete</span>
-                </DropdownMenuItem>
+               
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>

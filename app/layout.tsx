@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
@@ -37,22 +37,28 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-          suppressHydrationWarning
-          themes={["light", "dark", "navy"]}
-        >
-          <SidebarProvider>
-                <SidebarLeft />
+        <div className="flex h-screen">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+            themes={["light", "dark", "navy", "system"]}
+          >
+            <SidebarProvider>
+              <SidebarLeft />
+              <main className="flex-1 flex flex-col min-h-0">
                 {children}
-              <div className="min-w-[380px] flex-shrink-0">
-                <SidebarRight />
-              </div>
-          </SidebarProvider>
-        </ThemeProvider>
+              </main>
+            </SidebarProvider>
+          </ThemeProvider>
+          <div className="hidden md:block min-w-[380px] flex-shrink-0">
+            <SidebarRight />
+          </div>
+          <div className="md:hidden">
+            <SidebarRight />
+          </div>
+        </div>
       </body>
     </html>
   );

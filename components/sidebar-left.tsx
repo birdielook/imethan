@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Link from "next/link"
 import {
   AudioWaveform,
   Blocks,
@@ -23,6 +24,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarHeader,
 } from "@/components/ui/sidebar"
 
@@ -99,35 +101,40 @@ const data = {
   ],
   favorites: [
     {
-      name: "Insurance Agents Platform",
-      url: "#",
+      name: "Insurance",
+      url: "/insurance",
       emoji: "",
     },
     {
-      name: "Visual Studio GitHub Copilot",
-      url: "#",
+      name: "Visual Studio",
+      url: "/visual-studio",
       emoji: "",
     },
     {
-      name: "Enterprise VPN",
-      url: "#",
+      name: "VPN",
+      url: "/vpn",
       emoji: "",
     },
     {
       name: "FinTech",
-      url: "#",
+      url: "/fintech",
       emoji: "",
     },
     {
-      name: "In-Car E-commerce",
-      url: "/car",
+      name: "Automotive",
+      url: "/automotive",
+      emoji: "",
+    },
+    {
+      name: "Golf",
+      url: "/golf",
       emoji: "",
     }
 
   ],
   workspaces: [
     {
-      name: "Golf Apps Ecosystem",
+      name: "Golf",
       emoji: "🏠",
       pages: [
         {
@@ -169,7 +176,7 @@ const data = {
 export function SidebarLeft({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
-  const { theme, resolvedTheme } = useTheme()
+  const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
   
   // Prevent hydration mismatch by only rendering theme-dependent content after mount
@@ -183,35 +190,43 @@ export function SidebarLeft({
         <div className="flex flex-col gap-4">
           {/* Logo */}
           <div className="flex items-center px-4">
-            {mounted ? (
-              <img 
-                src={resolvedTheme === "dark" ? "/logo-ethan-dark.svg" : "/logo-ethan.svg"} 
-                alt="Ethan Logo" 
-                className="h-8 w-auto"
-              />
-            ) : (
-              <img 
-                src="/logo-ethan.svg" 
-                alt="Ethan Logo" 
-                className="h-8 w-auto"
-              />
-            )}
+            <Link href="/" className="hover:opacity-80 transition-opacity">
+              {mounted ? (
+                <img 
+                  src={resolvedTheme === "dark" ? "/logo-ethan-dark.svg" : "/logo-ethan.svg"} 
+                  alt="Ethan Logo" 
+                  className="h-8 w-auto"
+                />
+              ) : (
+                <img 
+                  src="/logo-ethan.svg" 
+                  alt="Ethan Logo" 
+                  className="h-8 w-auto"
+                />
+              )}
+            </Link>
           </div>
           
-          <ThemeToggle />
 
           {/* Navigation */}
-          <div className="flex items-center justify-between">
+          {/* <div className="flex items-center justify-between">
             <NavMain items={data.navMain} />
-          </div>
+          </div> */}
         </div>
       </SidebarHeader>
+
+      <SidebarFooter>
+        <div className="flex items-center justify-start p-2 border-t">
+          <ThemeToggle />
+        </div>
+      </SidebarFooter>
+
       <SidebarContent>
         <NavFavorites favorites={data.favorites} />
-        <NavWorkspaces workspaces={data.workspaces} />
+        {/* <NavWorkspaces workspaces={data.workspaces} /> */}
         {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
       </SidebarContent>
-      {/* <SidebarRail /> */}
+
     </Sidebar>
   )
 }
